@@ -2,6 +2,7 @@ package com.graphQl.GraphQL.Application;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public record Book(Integer id, String name, Integer pageCount) {
 
@@ -11,4 +12,11 @@ public record Book(Integer id, String name, Integer pageCount) {
             new Book(3, "God of Abraham", 234),
             new Book(4,"Billy the Goat", 2345)
     );
+
+    public static Optional<Book> getBookById(Integer id) {
+        return books.stream()
+                .filter(b -> b.id.equals(id))
+                .findFirst();
+
+    }
 }
